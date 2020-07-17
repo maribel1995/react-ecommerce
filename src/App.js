@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { Header, Cart } from "components";
+import { Products } from "./pages";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <>
       <Header isMobile={isMobile} />
+      <Products/>
       <Cart />
     </>
   );

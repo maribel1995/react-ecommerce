@@ -1,4 +1,4 @@
-{
+export const products = {
   "items": [
     {
       "id": "49",
@@ -1498,4 +1498,4 @@
       "stock": "IN_STOCK"
     }
   ]
-}
+};
