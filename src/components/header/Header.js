@@ -1,13 +1,9 @@
 import React, { useContext } from "react";
-import {
-  HeaderContainer,
-  HeaderContent,
-  StyledFontAwesomeIcon,
-} from "./HeaderStyle";
+import { HeaderContainer, HeaderContent } from "./HeaderStyle";
 import { BurguerMenu, CartButton } from "components";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { StoreContext } from "../../utils/store";
+import { StoreContext } from "store";
 
 const Header = ({ isMobile }) => {
   const { showCart } = useContext(StoreContext);

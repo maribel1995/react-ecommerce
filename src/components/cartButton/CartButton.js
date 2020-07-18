@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StoreContext } from "store";
 import {
   CartButtonWrapper,
   CircularLabel,
@@ -7,15 +8,17 @@ import {
 } from "./CartButtonStyle";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
-const CartButton = ({ onClick, productCounter = 2 }) => {
+const CartButton = ({ onClick }) => {
+  const { cartItems } = useContext(StoreContext);
+
   const handleOnClick = (e) => {
     onClick(e);
   };
 
   return (
     <CartButtonWrapper id="CartButton" onClick={handleOnClick}>
-      <CircularLabel displayed={productCounter > 0}>
-        <LabelContent>{productCounter}</LabelContent>
+      <CircularLabel displayed={cartItems.value.length > 0}>
+        <LabelContent>{cartItems.value.length}</LabelContent>
       </CircularLabel>
       <StyledFontAwesomeIcon icon={faShoppingBasket} />
     </CartButtonWrapper>
