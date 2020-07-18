@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const PacksContainer = styled.div`
   display: inline-block;
-  background-color: rgb(218, 113, 146, 0.3);
+  background-color: rgb(243, 231, 180, 0.3);
   margin: 15px auto;
   padding: 10px 0;
   width: 100%;
@@ -31,7 +31,7 @@ const Pack = styled.button`
   justify-content: center;
   border-radius: 100rem;
   border: 2px solid rgb(218, 113, 146);
-  background-color: ${({isSelected}) => isSelected ? "rgb(218, 113, 146);": "#ffff;" };
+  background-color: ${({isSelected}) => isSelected ? "rgb(219, 118, 74);": "#ffff;" };
   width: 60px;
   height: 60px;
 `;
@@ -39,13 +39,13 @@ const Pack = styled.button`
 const PackUnities = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: ${({isSelected}) => isSelected ? "#ffff;": "rgb(218, 113, 146);"};
+  color: ${({isSelected}) => isSelected ? "#ffff;": "rgb(219, 118, 74);"};
 `;
 const PackUnitiesText = styled.div`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
-  color: ${({isSelected}) => isSelected ? "#ffff;": "rgb(218, 113, 146);"};
+  color: ${({isSelected}) => isSelected ? "#ffff;": "rgb(219, 118, 74);"};
 `;
 
 export {

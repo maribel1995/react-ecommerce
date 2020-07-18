@@ -66,22 +66,53 @@ const CardProductName = styled.h3`
   margin-bottom: 5px;
 `;
 
-const CardDiscount = styled.div`
+const CardPrice = styled.div`
   width: 300px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
 `;
 
-const CardDiscountText = styled.span`
+const CardOriginalPrice = styled.span`
   color: ${({discount}) => discount ? "#db2828;" : "rgb(70, 68, 69);"};
   text-transform: uppercase;
   font-size: 14px;
-  ${({lineThrough}) => lineThrough && "text-decoration: line-through;"}
+  text-decoration: line-through;
+  margin: 3px;
+`;
+
+const CardPriceWrapper = styled.span`
+`;
+
+const CardCurrentPrice = styled.span`
+  color: ${({discount}) => discount ? "#db2828;" : "rgb(70, 68, 69);"};
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 3px;
+`;
+
+const CardDiscount = styled.span`
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px;
+  margin: 3px;
+  background-color: rgb(218, 40, 40);
 `;
 
 const CardButton = styled.button`
-  background-color: rgb(218, 113, 146);
+  background-color: rgb(98, 87, 78);
+  color: #ffff;
+  border: none;
+  margin-top: 10px; 
+  padding: 10px 0;
+  width: 100%;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
 `;
 
 export {
@@ -94,7 +125,10 @@ export {
   CardHeader,
   CardProductVendor,
   CardProductName,
+  CardPrice,
+  CardOriginalPrice,
+  CardPriceWrapper,
+  CardCurrentPrice,
   CardDiscount,
-  CardDiscountText,
   CardButton
 };

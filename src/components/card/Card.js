@@ -10,8 +10,11 @@ import {
   CardHeader,
   CardProductVendor,
   CardProductName,
+  CardPrice,
+  CardOriginalPrice,
+  CardPriceWrapper,
+  CardCurrentPrice,
   CardDiscount,
-  CardDiscountText,
   CardButton,
 } from "./CardStyle";
 
@@ -49,21 +52,15 @@ const Card = ({ image, vendors, name, packs, addItem }) => {
             <CardProductVendor>{vendors[0].vendor.name}</CardProductVendor>
             <CardProductName>{name}</CardProductName>
           </CardHeader>
+          <CardPrice>
+            <CardOriginalPrice>R${formatNumber(selectedPack.original_price)}</CardOriginalPrice>
+            <CardPriceWrapper>
+              <CardCurrentPrice>R${formatNumber(selectedPack.current_price)}</CardCurrentPrice>
+              <CardDiscount>{getDiscount()}% OFF</CardDiscount>
+            </CardPriceWrapper>
+          </CardPrice>
           <Packs packs={packs} selectedPack={getSelectedPack} />
-          <CardDiscount>
-            <CardDiscountText>
-              <strong>Desc.:</strong> {getDiscount()}%
-            </CardDiscountText>
-            <CardDiscountText lineThrough>
-              <strong>De:</strong> R${" "}
-              {formatNumber(selectedPack.original_price)}
-            </CardDiscountText>
-            <CardDiscountText discount>
-              <strong>Por:</strong> R${" "}
-              {formatNumber(selectedPack.current_price)}
-            </CardDiscountText>
-          </CardDiscount>
-          <CardButton onClick={handleOnClick}>Adicionar Item</CardButton>
+          <CardButton onClick={handleOnClick}>Adicionar ao carrinho</CardButton>
         </CardInfo>
       </CardContent>
     </CardWrapper>

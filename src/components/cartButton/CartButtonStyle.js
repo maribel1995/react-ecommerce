@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  color: #4d54ff;
+  color: rgb(57, 38, 41);
   font-size: 28px;
 `;
 
@@ -14,13 +14,13 @@ const CartButtonWrapper = styled.div`
 
 const CircularLabel = styled.div`
   position: absolute;
-  display: ${({ displayed }) => (displayed ? "block;" : "none;")}
+  display: ${({ displayed }) => (displayed ? "block;" : "none;")};
   top: -18px;
   left: 15px;
   width: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
-  height:20px;
+  height: 20px;
   line-height: 1em;
   text-align: center;
   border-radius: 500rem;
