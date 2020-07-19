@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Packs } from "components";
+import { formatNumber, getDiscount } from "helpers";
+import { StoreContext } from "store";
 import {
   CardWrapper,
   CardContent,
@@ -18,24 +20,43 @@ import {
   CardButton,
 } from "./CardStyle";
 
-const Card = ({ image, vendors, name, packs, addItem }) => {
-  const [selectedPack, setSelectedPack] = useState({});
+const Card = ({ image, vendors, name, packs, addItem, increaseQuantity, decreaseQuantity }) => {
+  const [selectedPack, setSelectedPack] = useState(packs[1]);
+  const [showAddRemoveButtons, setShowAddRemoveButtons] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const { cartItems } = useContext(StoreContext);
+  const isPackAddToCart = cartItems.value.some((item) => item.selectedPack.id === selectedPack.id);
 
-  const getSelectedPack = (e) => {
-    setSelectedPack(e);
+  useEffect(() => {
+    setShowAddRemoveButtons(false);
+    if(isPackAddToCart){
+      setShowAddRemoveButtons(true);
+      const itemIndex = cartItems.value.map((item) => item.selectedPack.id).indexOf(selectedPack.id);
+      setQuantity(cartItems.value[itemIndex].selectedPack.quantity);
+    }
+  }, [cartItems.value]);
+
+  const getSelectedPack = (pack) => {
+    setShowAddRemoveButtons(false);
+    if(isPackAddToCart){
+      setShowAddRemoveButtons(true);
+      const itemIndex = cartItems.value.map((item) => item.selectedPack.id).indexOf(pack.id);
+      setQuantity(cartItems.value[itemIndex].selectedPack.quantity);
+    }
+    setSelectedPack(pack);
   };
 
-  const getDiscount = () => {
-    return Math.round(
-      (selectedPack.current_price / selectedPack.original_price) * 100
-    );
-  };
+  const handleOnClick = (e) => {
+    const idButton = e.currentTarget.id;
+    if(idButton && idButton === "plus"){
+      increaseQuantity(selectedPack);
+      return;
+    }
 
-  const formatNumber = (number = 0) => {
-    return number.toFixed(2).toString().replace(".", ",");
-  };
-
-  const handleOnClick = () => {
+    if(idButton && idButton === "minus"){
+      decreaseQuantity(selectedPack);
+      return;
+    }
     addItem(selectedPack);
   };
 
@@ -53,14 +74,28 @@ const Card = ({ image, vendors, name, packs, addItem }) => {
             <CardProductName>{name}</CardProductName>
           </CardHeader>
           <CardPrice>
-            <CardOriginalPrice>R${formatNumber(selectedPack.original_price)}</CardOriginalPrice>
+            <CardOriginalPrice>
+              R${formatNumber(selectedPack.original_price)}
+            </CardOriginalPrice>
             <CardPriceWrapper>
-              <CardCurrentPrice>R${formatNumber(selectedPack.current_price)}</CardCurrentPrice>
-              <CardDiscount>{getDiscount()}% OFF</CardDiscount>
+              <CardCurrentPrice>
+                R${formatNumber(selectedPack.current_price)}
+              </CardCurrentPrice>
+              <CardDiscount>
+                {getDiscount(
+                  selectedPack.current_price,
+                  selectedPack.original_price
+                )}
+                % OFF
+              </CardDiscount>
             </CardPriceWrapper>
           </CardPrice>
           <Packs packs={packs} selectedPack={getSelectedPack} />
-          <CardButton onClick={handleOnClick}>Adicionar ao carrinho</CardButton>
+          {showAddRemoveButtons ? (<div>
+            <button id="minus" onClick={handleOnClick}>-</button>
+          <div>{quantity}</div>
+            <button id="plus" onClick={handleOnClick}>+</button>
+          </div>) : <CardButton onClick={handleOnClick}>Adicionar ao carrinho</CardButton>}
         </CardInfo>
       </CardContent>
     </CardWrapper>
