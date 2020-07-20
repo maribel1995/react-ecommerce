@@ -30,7 +30,7 @@ const Pack = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 100rem;
-  border: 2px solid rgb(218, 113, 146);
+  border: 2px solid rgb(219,118,74);
   background-color: ${({isSelected}) => isSelected ? "rgb(219, 118, 74);": "#ffff;" };
   width: 60px;
   height: 60px;

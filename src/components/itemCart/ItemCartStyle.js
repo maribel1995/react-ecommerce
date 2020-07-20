@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const ItemWrapper = styled.div`
-margin: 0 15px;
+  margin: 0 15px;
 `;
 
 const ItemContent = styled.div`
@@ -12,7 +12,9 @@ const ItemContent = styled.div`
   background-color: #fff;
   border: 1px solid #d1d1d1;
   margin: 0.5rem 0;
+  padding: 0.5rem;
   display: flex;
+  box-sizing: border-box;
 `;
 
 const ItemFigure = styled.figure`
@@ -25,42 +27,55 @@ const ItemImg = styled.img`
 `;
 
 const ItemInfo = styled.div`
-  
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 `;
 
-const ItemTitle = styled.h3`
-  
-`;
+const ItemTitle = styled.h3``;
 
 const ItemDetails = styled.div`
-  
+  color: rgb(153, 153, 153);
 `;
 
+const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+`;
 
-const RemoveButton = styled.button`
-  color: #fff;
+const QuantityButton = styled.button`
+  background-color: #fff;
+  color: rgb(71, 68, 69);
   border: none;
-  margin: 0 10px; 
-  padding: 6px;
+  padding: 10px 0;
+  width: 50px;
   font-size: 14px;
   font-weight: 700;
-  background-color: rgb(98, 87, 78);
-  text-transform: uppercase;
 `;
 
-const ItemPrice = styled.div`
-  
+const QuantityText = styled.div`
+  color: rgb(71, 68, 69);
+  border: 2px solid #e9e8e8;
+  margin: 0 10px;
+  padding: 10px 0;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
 `;
 
 export {
-    ItemWrapper,
-    ItemContent,
-    ItemFigure,
-    ItemImg,
-    ItemInfo,
-    ItemTitle,
-    ItemDetails,
-    RemoveButton,
-    ItemPrice
+  ItemWrapper,
+  ItemContent,
+  ItemFigure,
+  ItemImg,
+  ItemInfo,
+  ItemTitle,
+  ItemDetails,
+  QuantityWrapper,
+  QuantityButton,
+  QuantityText,
 };

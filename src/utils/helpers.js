@@ -5,3 +5,7 @@ export const formatNumber = (number = 0) => {
 export const getDiscount = (currentPrice, originalPrice) => {
   return Math.round((currentPrice / originalPrice) * 100);
 };
+
+export const unitPrice = (units, price) => {
+  return price/units;
+};

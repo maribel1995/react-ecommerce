@@ -75,18 +75,17 @@ const CardPrice = styled.div`
 `;
 
 const CardOriginalPrice = styled.span`
-  color: ${({discount}) => discount ? "#db2828;" : "rgb(70, 68, 69);"};
+  color: ${({ discount }) => (discount ? "#db2828;" : "rgb(70, 68, 69);")};
   text-transform: uppercase;
   font-size: 14px;
   text-decoration: line-through;
   margin: 3px;
 `;
 
-const CardPriceWrapper = styled.span`
-`;
+const CardPriceWrapper = styled.span``;
 
 const CardCurrentPrice = styled.span`
-  color: ${({discount}) => discount ? "#db2828;" : "rgb(70, 68, 69);"};
+  color: ${({ discount }) => (discount ? "#db2828;" : "rgb(70, 68, 69);")};
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 700;
@@ -94,7 +93,7 @@ const CardCurrentPrice = styled.span`
 `;
 
 const CardDiscount = styled.span`
-  color: #FFF;
+  color: #fff;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
@@ -103,15 +102,57 @@ const CardDiscount = styled.span`
   background-color: rgb(218, 40, 40);
 `;
 
-const CardButton = styled.button`
+const AddCartButton = styled.button`
   background-color: rgb(98, 87, 78);
   color: #ffff;
   border: none;
-  margin-top: 10px; 
   padding: 10px 0;
   width: 100%;
   font-size: 14px;
   text-transform: uppercase;
+  font-weight: 700;
+`;
+const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const QuantityButton = styled.button`
+  background-color: rgb(98, 87, 78);
+  color: #ffff;
+  border: none;
+  padding: 10px 0;
+  width: 50px;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const QuantityText = styled.div`
+  color: rgb(98, 87, 78);
+  border: 1px solid rgb(98, 87, 78);
+  margin: 0 10px;
+  padding: 10px 0;
+  width: 50%;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const UnityWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+`;
+
+const UnityText = styled.span`
+  color: rgb(98, 87, 78);
+  font-size: 16px;
+`;
+
+const UnityPrice = styled.span`
+  color: rgb(219, 118, 74);
+  font-size: 2rem;
   font-weight: 700;
 `;
 
@@ -130,5 +171,11 @@ export {
   CardPriceWrapper,
   CardCurrentPrice,
   CardDiscount,
-  CardButton
+  AddCartButton,
+  QuantityWrapper,
+  QuantityButton,
+  QuantityText,
+  UnityWrapper,
+  UnityText,
+  UnityPrice,
 };

@@ -1,5 +1,7 @@
 import React from "react";
 import { formatNumber, getDiscount } from "helpers";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ItemWrapper,
   ItemContent,
@@ -8,12 +10,12 @@ import {
   ItemInfo,
   ItemTitle,
   ItemDetails,
-  RemoveButton,
-  ItemPrice,
+  QuantityWrapper,
+  QuantityButton,
+  QuantityText,
 } from "./ItemCartStyle";
 
 const ItemCart = ({ image, name, selectedPack, onClick }) => {
-
   const handleOnClick = (e) => {
     onClick(e);
   };
@@ -35,13 +37,16 @@ const ItemCart = ({ image, name, selectedPack, onClick }) => {
             )}
             %
           </ItemDetails>
-          <div id={selectedPack.id}>
-            <RemoveButton id="minus" onClick={handleOnClick}>Remover</RemoveButton>
-            <div>quantidade: {selectedPack.quantity}</div>
-            <RemoveButton id="plus" onClick={handleOnClick}>Adicionar</RemoveButton>
-          </div>
+          <QuantityWrapper id={selectedPack.id}>
+            <QuantityButton className="minus" onClick={handleOnClick}>
+              <FontAwesomeIcon icon={faMinus} />
+            </QuantityButton>
+            <QuantityText>{selectedPack.quantity}</QuantityText>
+            <QuantityButton className="plus" onClick={handleOnClick}>
+              <FontAwesomeIcon icon={faPlus} />
+            </QuantityButton>
+          </QuantityWrapper>
         </ItemInfo>
-        <ItemPrice></ItemPrice>
       </ItemContent>
     </ItemWrapper>
   );

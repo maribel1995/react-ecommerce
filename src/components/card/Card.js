@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Packs } from "components";
-import { formatNumber, getDiscount } from "helpers";
+import { formatNumber, getDiscount, unitPrice } from "helpers";
 import { StoreContext } from "store";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   CardWrapper,
   CardContent,
@@ -17,48 +19,96 @@ import {
   CardPriceWrapper,
   CardCurrentPrice,
   CardDiscount,
-  CardButton,
+  AddCartButton,
+  QuantityWrapper,
+  QuantityButton,
+  QuantityText,
+  UnityWrapper,
+  UnityText,
+  UnityPrice,
 } from "./CardStyle";
 
-const Card = ({ image, vendors, name, packs, addItem, increaseQuantity, decreaseQuantity }) => {
+const Card = ({
+  image,
+  vendors,
+  name,
+  unities,
+  packs,
+  addItem,
+  increaseQuantity,
+  decreaseQuantity,
+}) => {
   const [selectedPack, setSelectedPack] = useState(packs[1]);
   const [showAddRemoveButtons, setShowAddRemoveButtons] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const { cartItems } = useContext(StoreContext);
-  const isPackAddToCart = cartItems.value.some((item) => item.selectedPack.id === selectedPack.id);
 
   useEffect(() => {
-    setShowAddRemoveButtons(false);
-    if(isPackAddToCart){
-      setShowAddRemoveButtons(true);
-      const itemIndex = cartItems.value.map((item) => item.selectedPack.id).indexOf(selectedPack.id);
-      setQuantity(cartItems.value[itemIndex].selectedPack.quantity);
+    const product = cartItems.value[itemIndex(selectedPack)];
+    if (product) {
+      setSelectedPack(product.selectedPack);
+      handleQuantity(product.selectedPack);
+      return;
     }
+    handleQuantity(selectedPack);
   }, [cartItems.value]);
 
   const getSelectedPack = (pack) => {
-    setShowAddRemoveButtons(false);
-    if(isPackAddToCart){
-      setShowAddRemoveButtons(true);
-      const itemIndex = cartItems.value.map((item) => item.selectedPack.id).indexOf(pack.id);
-      setQuantity(cartItems.value[itemIndex].selectedPack.quantity);
+    const product = cartItems.value[itemIndex(pack)];
+    if (product) {
+      setSelectedPack(product.selectedPack);
+      handleQuantity(product.selectedPack);
+      return;
     }
+    handleQuantity(pack);
     setSelectedPack(pack);
   };
 
+  const itemIndex = (pack) => {
+    return cartItems.value.map((item) => item.selectedPack.id).indexOf(pack.id);
+  };
+
   const handleOnClick = (e) => {
-    const idButton = e.currentTarget.id;
-    if(idButton && idButton === "plus"){
+    const buttonType = e.currentTarget.className;
+
+    if (buttonType.includes("plus")) {
       increaseQuantity(selectedPack);
       return;
     }
 
-    if(idButton && idButton === "minus"){
+    if (buttonType.includes("minus")) {
       decreaseQuantity(selectedPack);
       return;
     }
     addItem(selectedPack);
   };
+
+  const handleQuantity = (pack) => {
+    setShowAddRemoveButtons(false);
+    const isPackAddToCart = cartItems.value.some(
+      (item) => item.selectedPack.id === pack.id
+    );
+
+    if (isPackAddToCart) {
+      setShowAddRemoveButtons(true);
+      const itemIndex = cartItems.value
+        .map((item) => item.selectedPack.id)
+        .indexOf(pack.id);
+      setQuantity(cartItems.value[itemIndex].selectedPack.quantity);
+    }
+  };
+
+  const renderQuantityButtons = () => (
+    <QuantityWrapper>
+      <QuantityButton className="minus" onClick={handleOnClick}>
+        <FontAwesomeIcon icon={faMinus} />
+      </QuantityButton>
+      <QuantityText>{quantity}</QuantityText>
+      <QuantityButton className="plus" onClick={handleOnClick}>
+        <FontAwesomeIcon icon={faPlus} />
+      </QuantityButton>
+    </QuantityWrapper>
+  );
 
   return (
     <CardWrapper>
@@ -91,11 +141,22 @@ const Card = ({ image, vendors, name, packs, addItem, increaseQuantity, decrease
             </CardPriceWrapper>
           </CardPrice>
           <Packs packs={packs} selectedPack={getSelectedPack} />
-          {showAddRemoveButtons ? (<div>
-            <button id="minus" onClick={handleOnClick}>-</button>
-          <div>{quantity}</div>
-            <button id="plus" onClick={handleOnClick}>+</button>
-          </div>) : <CardButton onClick={handleOnClick}>Adicionar ao carrinho</CardButton>}
+          <UnityWrapper>
+            <UnityText>A unidade sai por</UnityText>
+            <UnityPrice>
+              R$
+              {formatNumber(
+                unitPrice(selectedPack.unities, selectedPack.current_price)
+              )}
+            </UnityPrice>
+          </UnityWrapper>
+          {showAddRemoveButtons ? (
+            renderQuantityButtons()
+          ) : (
+            <AddCartButton onClick={handleOnClick}>
+              Adicionar ao carrinho
+            </AddCartButton>
+          )}
         </CardInfo>
       </CardContent>
     </CardWrapper>

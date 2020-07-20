@@ -1,10 +1,13 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useContext } from "react";
 import { Header, Cart } from "components";
 import { Products } from "./pages";
+import { StoreContext } from "store";
+import { Main } from "./AppStyle";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(true);
+  const { showCart } = useContext(StoreContext);
 
   useLayoutEffect(() => {
     checkScreen();
@@ -19,11 +22,13 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="app">
       <Header isMobile={isMobile} />
-      <Products/>
-      <Cart />
-    </>
+      <Main showCart={showCart.value} isMobile={isMobile}>
+        <Products />
+      </Main>
+      <Cart isMobile={isMobile} />
+    </div>
   );
 };
 

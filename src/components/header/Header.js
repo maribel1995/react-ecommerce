@@ -13,7 +13,7 @@ const Header = ({ isMobile }) => {
   };
 
   return (
-    <HeaderContainer>
+    <HeaderContainer showCart={showCart.value}>
       <HeaderContent>
         <BurguerMenu onClick={handleOnClick} displayed={isMobile} />
         <FontAwesomeIcon icon={faSearch} />
