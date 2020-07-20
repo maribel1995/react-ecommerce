@@ -14,7 +14,7 @@ const CartContainer = styled.div`
   transition-property: all;
   transition-duration: 0s;
   transition-timing-function: ease;
-  transition-delay: ${({ showCart }) => (showCart ? "0s" : "1s")};
+  transition-delay: ${({ showCart }) => (showCart ? "0s" : "0.5s")};
 `;
 
 const CartWrapper = styled.div`
@@ -22,7 +22,7 @@ const CartWrapper = styled.div`
     showCart && isMobile ? "100%" : showCart ? "500px" : 0};
   background-color: #fff;
   position: absolute;
-  height: 87.5%;
+  height: calc(100% - 106px);
   opacity: ${({ showCart }) => (showCart ? 1 : 0)};
   right: 0;
   transition: 3s;
