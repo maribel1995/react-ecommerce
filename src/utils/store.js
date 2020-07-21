@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { fetchProducts } from "../products";
 
 export const StoreContext = createContext(null);
 
@@ -7,6 +8,7 @@ export default ({ children }) => {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
+  const [products, setProducts] = useState(fetchProducts.items);
 
   const increaseQuantity = (selectedPack) => {
     if (selectedPack.quantity < 3) {
@@ -40,6 +42,9 @@ export default ({ children }) => {
     cart.splice(itemIndex, 1);
     setCartItems([...cart]);
   };
+  const resetProduct = () => {
+    setProducts(fetchProducts.items);
+  };
 
   const store = {
     showCart: {
@@ -51,6 +56,11 @@ export default ({ children }) => {
       set: setCartItems,
       increaseQuantity: increaseQuantity,
       decreaseQuantity: decreaseQuantity,
+    },
+    products: {
+      value: products,
+      set: setProducts,
+      reset: resetProduct,
     },
   };
 

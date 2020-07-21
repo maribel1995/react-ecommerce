@@ -4,7 +4,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   background-color: #ffffff;
   border-bottom: 1px solid #e9e8e8;
-  z-index:${({showCart}) => showCart ? 0 : 1};
+  z-index: ${({ showCart }) => (showCart ? 0 : 1)};
   width: 100%;
 `;
 
@@ -21,4 +21,16 @@ const HeaderContent = styled.nav`
   box-sizing: border-box;
 `;
 
-export { HeaderContainer, HeaderContent };
+const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+`;
+
+const HeaderLogo = styled.img`
+  width: 120px;
+  height: 38px;
+`;
+
+export { HeaderContainer, HeaderContent, HeaderWrapper, HeaderLogo };

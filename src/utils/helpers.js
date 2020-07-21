@@ -7,5 +7,14 @@ export const getDiscount = (currentPrice, originalPrice) => {
 };
 
 export const unitPrice = (units, price) => {
-  return price/units;
+  return price / units;
+};
+
+export const normalizeString = (str) =>
+  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+export const buildSearchRegex = (str) => {
+  const arr = str.split("");
+  const exp = arr.map((x, i) => `(.*?)${arr[i]}`).join("");
+  return new RegExp(exp, "i");
 };

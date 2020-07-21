@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Card } from "components";
 import { ProductList } from "./ProductStyle";
-import { products } from "../../products";
 import { StoreContext } from "store";
 
 const Products = () => {
-  const { cartItems } = useContext(StoreContext);
+  const { cartItems, products } = useContext(StoreContext);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems.value));
@@ -22,16 +21,20 @@ const Products = () => {
     selectedProduct.selectedPack.quantity = 1;
     cartItems.set([...cartItems.value, selectedProduct]);
   };
-
+  const productList = products.value;
   return (
     <ProductList>
-      {products.items.map((product, i) => (
+      {productList.map((product, i) => (
         <Card
           key={i}
           {...product}
           addItem={(selectedPack) => addItem(selectedPack, product)}
-          increaseQuantity={(selectedPack) => cartItems.increaseQuantity(selectedPack)}
-          decreaseQuantity={(selectedPack) => cartItems.decreaseQuantity(selectedPack)}
+          increaseQuantity={(selectedPack) =>
+            cartItems.increaseQuantity(selectedPack)
+          }
+          decreaseQuantity={(selectedPack) =>
+            cartItems.decreaseQuantity(selectedPack)
+          }
         />
       ))}
     </ProductList>

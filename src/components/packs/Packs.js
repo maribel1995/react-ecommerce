@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   PacksContainer,
   PacksTitle,
@@ -7,15 +7,17 @@ import {
   PackUnities,
   PackUnitiesText,
 } from "./PacksStyle";
+import { StoreContext } from "store";
 
 const Packs = ({ packs, selectedPack }) => {
   const [isSelected, setIsSelected] = useState({});
+  const { products } = useContext(StoreContext);
 
   useEffect(() => {
     const defaultPack = packs[1];
     setIsSelected(defaultPack);
     selectedPack(defaultPack);
-  }, []);
+  }, [products.value]);
 
   const handleOnClick = (e) => {
     const targetId = e.currentTarget.id;

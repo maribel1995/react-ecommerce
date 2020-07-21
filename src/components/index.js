@@ -5,5 +5,6 @@ import { Cart } from "./cart";
 import { Card } from "./card";
 import { Packs } from "./packs";
 import { ItemCart } from "./itemCart";
+import { SearchInput } from "./searchInput";
 
-export { Header, BurguerMenu, CartButton, Cart, Card, Packs, ItemCart };
+export { Header, BurguerMenu, CartButton, Cart, Card, Packs, ItemCart, SearchInput };

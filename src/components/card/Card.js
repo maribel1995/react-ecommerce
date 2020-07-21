@@ -32,7 +32,6 @@ const Card = ({
   image,
   vendors,
   name,
-  unities,
   packs,
   addItem,
   increaseQuantity,

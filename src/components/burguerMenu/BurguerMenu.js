@@ -1,13 +1,9 @@
 import React from "react";
-import { MenuButton, MenuLayer } from './BurguerMenuStyled';
+import { MenuButton, MenuLayer } from "./BurguerMenuStyled";
 
-const BurguerMenu = ({ displayed, onClick }) => {
-  const handleOnClick = (e) => {
-    onClick(e);
-  };
-
+const BurguerMenu = () => {
   return (
-    <MenuButton id="burguer-menu" displayed={displayed} onClick={handleOnClick}>
+    <MenuButton id="burguer-menu">
       <MenuLayer />
       <MenuLayer />
       <MenuLayer />
