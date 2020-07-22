@@ -5,4 +5,7 @@ export const Main = styled.main`
     showCart && isMobile ? "none" : "block"};
   position: relative;
   top: 90px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 `;

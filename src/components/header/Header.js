@@ -21,7 +21,6 @@ const Header = ({ isMobile }) => {
 
     if (value.length > 3) {
       const regex = buildSearchRegex(value);
-      console.log(regex);
       const filtredProducts = products.value.filter((p) =>
         regex.test(normalizeString(p.name))
       );

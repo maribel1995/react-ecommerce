@@ -42,6 +42,7 @@ export default ({ children }) => {
     cart.splice(itemIndex, 1);
     setCartItems([...cart]);
   };
+  
   const resetProduct = () => {
     setProducts(fetchProducts.items);
   };

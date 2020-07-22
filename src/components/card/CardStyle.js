@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const CardDiv = styled.div``;
+
 const CardWrapper = styled.div`
   width: 99.96%;
   margin-left: 0%;
@@ -50,10 +52,6 @@ const CardImg = styled.img`
   flex: 0 1 auto;
 `;
 
-const CardInfo = styled.div``;
-
-const CardHeader = styled.div``;
-
 const CardProductVendor = styled.h3`
   color: rgb(70, 68, 69);
   font-size: 14px;
@@ -82,8 +80,6 @@ const CardOriginalPrice = styled.span`
   margin: 3px;
 `;
 
-const CardPriceWrapper = styled.span``;
-
 const CardCurrentPrice = styled.span`
   color: ${({ discount }) => (discount ? "#db2828;" : "rgb(70, 68, 69);")};
   text-transform: uppercase;
@@ -111,11 +107,13 @@ const AddCartButton = styled.button`
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 700;
+  margin-bottom: 10px;
 `;
 const QuantityWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 `;
 
 const QuantityButton = styled.button`
@@ -157,18 +155,16 @@ const UnityPrice = styled.span`
 `;
 
 export {
+  CardDiv,
   CardWrapper,
   CardContent,
   CardFigureContainer,
   CardFigure,
   CardImg,
-  CardInfo,
-  CardHeader,
   CardProductVendor,
   CardProductName,
   CardPrice,
   CardOriginalPrice,
-  CardPriceWrapper,
   CardCurrentPrice,
   CardDiscount,
   AddCartButton,

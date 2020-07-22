@@ -10,13 +10,11 @@ import {
   CardFigureContainer,
   CardFigure,
   CardImg,
-  CardInfo,
-  CardHeader,
   CardProductVendor,
   CardProductName,
   CardPrice,
   CardOriginalPrice,
-  CardPriceWrapper,
+  CardDiv,
   CardCurrentPrice,
   CardDiscount,
   AddCartButton,
@@ -117,16 +115,16 @@ const Card = ({
             <CardImg src={image} />
           </CardFigure>
         </CardFigureContainer>
-        <CardInfo>
-          <CardHeader>
+        <CardDiv>
+          <CardDiv>
             <CardProductVendor>{vendors[0].vendor.name}</CardProductVendor>
             <CardProductName>{name}</CardProductName>
-          </CardHeader>
+          </CardDiv>
           <CardPrice>
             <CardOriginalPrice>
               R${formatNumber(selectedPack.original_price)}
             </CardOriginalPrice>
-            <CardPriceWrapper>
+            <CardDiv>
               <CardCurrentPrice>
                 R${formatNumber(selectedPack.current_price)}
               </CardCurrentPrice>
@@ -137,7 +135,7 @@ const Card = ({
                 )}
                 % OFF
               </CardDiscount>
-            </CardPriceWrapper>
+            </CardDiv>
           </CardPrice>
           <Packs packs={packs} selectedPack={getSelectedPack} />
           <UnityWrapper>
@@ -156,7 +154,7 @@ const Card = ({
               Adicionar ao carrinho
             </AddCartButton>
           )}
-        </CardInfo>
+        </CardDiv>
       </CardContent>
     </CardWrapper>
   );

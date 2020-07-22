@@ -27,7 +27,7 @@ const App = () => {
       <Main showCart={showCart.value} isMobile={isMobile}>
         <Products />
       </Main>
-      <Cart isMobile={isMobile} />
+      <Cart isMobile={isMobile} windowWidth={windowWidth}/>
     </div>
   );
 };

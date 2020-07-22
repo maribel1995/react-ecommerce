@@ -5,38 +5,29 @@ const CartContainer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
+  width: ${({ showCart }) => (showCart ? "100%" : "0" )};
+  height: 100%;
   z-index: 9999;
-  width: ${({ showCart }) => (showCart ? "100%" : 0)};
-  height: 100vh;
-  opacity: ${({ showCart }) => (showCart ? 1 : 0)};
   ${({ showCart }) => showCart && "background-color:rgba(0, 0, 0, 0.5)"};
-  transition: 1s;
-  transition-property: all;
-  transition-duration: 0s;
-  transition-timing-function: ease;
-  transition-delay: ${({ showCart }) => (showCart ? "0s" : "0.5s")};
+  transition: background-color .5s ease-in ${({ showCart }) => (showCart ? "0s" : "0.7s")};
 `;
 
 const CartWrapper = styled.div`
-  width: ${({ showCart, isMobile }) =>
-    showCart && isMobile ? "100%" : showCart ? "500px" : 0};
+  width: ${({ isMobile, windowWidth }) => (isMobile ? `${windowWidth}px` : "500px" )};
   background-color: #fff;
   position: absolute;
-  height: calc(100% - 106px);
-  opacity: ${({ showCart }) => (showCart ? 1 : 0)};
+  height: inherit;
+  transform: ${({ showCart }) => (showCart ? "translateX(0)" : "translateX(100%)" )};
   right: 0;
-  transition: 3s;
-  transition-property: all;
-  transition-duration: 1s;
-  transition-timing-function: ease;
-  transition-delay: 0s;
-  overflow: auto;
+  transition: transform .5s ease-in;
 `;
 
 const CartContent = styled.div`
   position: relative;
   top: 55px;
   bottom: 55px;
+  height: calc(100% - 200px);
+  overflow: auto;
 `;
 
 const StyledFontIcon = styled(FontAwesomeIcon)`
@@ -49,7 +40,7 @@ const StyledFontIcon = styled(FontAwesomeIcon)`
 const CartHeader = styled.div`
   position: fixed;
   top: 0;
-  width: inherit;
+  width: 100%;
   background-color: rgb(98, 87, 78);
   z-index: 1;
 `;
@@ -78,7 +69,7 @@ const CartHeaderText = styled.span`
 
 const CartFooter = styled.div`
   position: fixed;
-  width: inherit;
+  width: 100%;
   bottom: 0;
   background-color: #fff;
 `;

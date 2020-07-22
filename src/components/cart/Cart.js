@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StoreContext } from "../../utils/store";
+import { StoreContext } from "store";
 import { ItemCart } from "components";
 import { formatNumber } from "helpers";
 import {
@@ -17,7 +17,7 @@ import {
 } from "./CartStyle";
 import { faShoppingBasket, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Cart = ({ isMobile }) => {
+const Cart = ({ isMobile, windowWidth }) => {
   const { showCart, cartItems } = useContext(StoreContext);
 
   const handleItem = (e) => {
@@ -46,7 +46,7 @@ const Cart = ({ isMobile }) => {
 
   return (
     <CartContainer showCart={showCart.value}>
-      <CartWrapper showCart={showCart.value} isMobile={isMobile}>
+      <CartWrapper showCart={showCart.value} isMobile={isMobile} windowWidth={windowWidth}>
         <CartHeader>
           <CartHeaderContent>
             <CartHeaderText>
