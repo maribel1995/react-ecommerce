@@ -1,4 +1,4 @@
-# zx-challenge
+# react-ecommerce
 
 demo: https://awesome-nightingale-489ca3.netlify.app/
 
